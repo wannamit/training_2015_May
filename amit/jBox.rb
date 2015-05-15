@@ -3,7 +3,7 @@ class JukeBox
 
 	def initialize(*songs)
 		@songs = songs
-		@current_play
+		@current_play = 0
 	end
 
 	def add_song(song)
@@ -15,9 +15,11 @@ class JukeBox
 		songs.first
 	end
 
+
 	def next
 		# @current_play += 1 > songs.length ? songs.first : songs[@current_play]
-		if @current_play > songs.length
+
+		if (@current_play+=1) > songs.length
 			# puts songs.first
 			@current_play = 0
 			return songs.first
@@ -28,9 +30,8 @@ class JukeBox
 	end
 
 	def prev
-		@current_play -= 1
 
-		if @current_play < 0
+		if (@current_play -= 1) < 0
 			# puts songs.last
 			@current_play = songs.length-1
 			return songs.last
@@ -50,7 +51,7 @@ class JukeBox
 	end
 
 
-	def self.currentPlaying
+	def currentPlaying
 		songs[@current_play]
 	end
 end
@@ -58,7 +59,7 @@ end
 
 # playlist = JukeBox.new(["Sirens.mp3", "Snuff.mp3", "Aadhar.mp3", "Bhool.mp3", "Numb.mp3"])
 
-playlist = JukeBox.new(["Song1", "Song2", "Song3", "Song4", "Song5"])
+playlist = JukeBox.new("Song1", "Song2", "Song3", "Song4", "Song5")
 
 puts "playlist.play"
 puts playlist.play
@@ -81,6 +82,6 @@ puts "playlist.shuffle"
 puts playlist.shuffle
 puts
 
-puts "JukeBox.currentPlaying"
-puts JukeBox.currentPlaying
+puts "playlist.currentPlaying"
+puts playlist.currentPlaying
 puts
